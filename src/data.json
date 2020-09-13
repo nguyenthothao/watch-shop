@@ -1,0 +1,14 @@
+[
+    {
+        "productId": 1,
+        "price": 1000,
+        "image": "./public/image/a.jpg"
+
+    },
+    {
+        "productId": 2,
+        "price": 1000,
+        "image": "./public/image/a.jpg"
+
+    }
+]

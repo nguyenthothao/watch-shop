@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import {BrowserRouter, Route,Link} from 'react-router-dom';
+import HomeScreen from './Screen/HomeScreen';
+import ProductScreen from './Screen/ProductScreen';
 
-function App() {
+class App extends Component {
+
+    
+    
+  render(){
+    const openMenu = () => {
+        document.querySelector(".sidebar").classList.add("open");
+    }
+    const closeMenu = () => {
+        document.querySelector(".sidebar").classList.remove("open");
+    }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+      <div className="grid-container">
+            <header className="header">
+                <div className="brand">
+                    <button onClick={openMenu}>
+                        &#9776;
+                    </button>
+                    <Link to="/">watchshop</Link>
+                </div>
+                <div className="header-links">
+                    <a href="index.html">Cart</a>
+                    <a href="index.html">Sign in</a>
+                </div>
+            </header>
+            <aside className="sidebar">
+                <h3>Shopping categories</h3>
+                <button className="sidebar-close-button" onClick={closeMenu}>x</button>
+                <ul>
+                    <li><a href="index.html">Women's watch</a></li>
+                    <li><a href="index.html">Men's watch</a></li>
+                </ul>
+            </aside>
+            <main className="main">
+                <div className="content">
+                    <Route path="/product/:id" component={ProductScreen} />
+                    <Route path="/" exact={true} component={HomeScreen} />
+                    
+                </div>
+                
+            </main>
+            <footer className="footer">
+                All right reserdved.
+            </footer>
+        </div>
+        </BrowserRouter>
   );
 }
-
+}
 export default App;
